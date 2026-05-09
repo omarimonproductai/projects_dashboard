@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oriol's Projects</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f6feb'/><text x='32' y='44' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='700' fill='white' text-anchor='middle'>OM</text></svg>">
+<title>Projectes de Vibecoding</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -162,14 +162,18 @@
 <body>
 <div class="container">
   <header>
-    <h1>Oriol's Projects</h1>
+    <h1>Projectes de Vibecoding</h1>
+    <div class="subtitle">
+      Oriol Marimón-Clos
+      <a href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener" aria-label="LinkedIn de Oriol Marimón-Clos" style="color:inherit;text-decoration:none;margin-left:0.5rem;vertical-align:middle;display:inline-flex;align-items:center;gap:0.35rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" style="display:block;">
+          <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.67h4.56V24H.22V8.67zM8.9 8.67h4.38v2.08h.06c.61-1.16 2.1-2.39 4.32-2.39 4.62 0 5.48 3.03 5.48 6.98V24h-4.56v-7.74c0-1.85-.03-4.24-2.58-4.24-2.58 0-2.98 2.02-2.98 4.11V24H8.9V8.67z"/>
+        </svg>
+      </a>
+    </div>
   </header>
 
   <div id="sections"></div>
-
-  <footer>
-    Projectes publicats a GitHub Pages
-  </footer>
 </div>
 
 <script>
@@ -215,7 +219,7 @@ const PROJECTS = [
     name: "My Setlists",
     icon: "🎸",
     category: "personal",
-    description: "Playlist de Ligabue",
+    description: "Reproductor de les playlists dels meus concerts",
     url: "https://omarimonagentai.github.io/musicplaylist/ligabue.html",
     github_repo: "https://github.com/omarimonagentai/musicplaylist"
   }
@@ -225,12 +229,12 @@ const LOCAL_PROJECTS = [
   {
     name: "Desktop Karaoke",
     icon: "🎧",
-    description: "Reproductor de playlists (requires local setup)"
+    description: "Reproductor de playlists (requereix configuració local)"
   },
   {
     name: "TMB",
     icon: "🚌",
-    description: "Parades de bus TMB (requires local setup)"
+    description: "Parades de bus TMB (requereix configuració local)"
   }
 ];
 
@@ -244,7 +248,6 @@ function makeCard(p) {
   
   card.innerHTML = `
     <div class="card-header">
-      <span class="card-icon">${p.icon}</span>
       <span class="card-title">${p.name}</span>
       ${githubIcon}
     </div>
@@ -261,7 +264,7 @@ function makeSection(title, icon, projects) {
   section.className = 'section';
   const h2 = document.createElement('h2');
   h2.className = 'section-title';
-  h2.innerHTML = `<span>${icon}</span><span>${title}</span><span style="color:var(--text-dim);font-weight:400;font-size:0.85em">(${projects.length})</span>`;
+  h2.innerHTML = `<span>${title}</span><span style="color:var(--text-dim);font-weight:400;font-size:0.85em">(${projects.length})</span>`;
   section.appendChild(h2);
   const grid = document.createElement('div');
   grid.className = 'grid';
@@ -275,7 +278,7 @@ function makeLocalProjectsSection() {
   section.className = 'section';
   const h2 = document.createElement('h2');
   h2.className = 'section-title';
-  h2.innerHTML = `<span>🔧</span><span>Local Projects (Not Available Online)</span>`;
+  h2.innerHTML = `<span>Projectes locals (no disponibles en línia)</span>`;
   section.appendChild(h2);
   
   const container = document.createElement('div');
@@ -285,7 +288,7 @@ function makeLocalProjectsSection() {
     const item = document.createElement('div');
     item.className = 'local-project-item';
     item.innerHTML = `
-      <div class="local-project-name">${p.icon} ${p.name}</div>
+      <div class="local-project-name">${p.name}</div>
       <div class="local-project-desc">${p.description}</div>
     `;
     container.appendChild(item);
