@@ -256,7 +256,7 @@ function makeCard(p) {
     : '';
   
   const mobileProjects = ["cooltra_calendar", "concerts", "ligabue"];
-  const mobileIcon = mobileProjects.includes(p.id) ? `<span class="card-mobile" title="Optimitzat per mòbils"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Mobile"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zM7 4h10v16H7V4z"/></svg></span>` : '';
+  const mobileIcon = mobileProjects.includes(p.id) ? `<span class="card-mobile"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Mobile" title="Optimitzat per mòbils"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zM7 4h10v16H7V4z"/></svg></span>` : '';
   
   card.innerHTML = `
     <div class="card-header">
