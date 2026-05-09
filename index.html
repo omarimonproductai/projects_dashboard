@@ -4,12 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projectes de Vibecoding</title>
+<meta name="description" content="Recull de projectes de vibecoding creats per Oriol Marimón-Clos.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   :root {
     --bg: #0d1117;
+    --bg-soft: #161b22;
     --card: #161b22;
     --card-hover: #1f2630;
     --border: #30363d;
@@ -17,179 +24,266 @@
     --text-dim: #8b949e;
     --accent: #58a6ff;
     --accent-hover: #1f6feb;
-    --success: #3fb950;
-    --danger: #f85149;
+    --shadow-accent: rgba(88, 166, 255, 0.15);
+    --radius: 12px;
+    --transition: 0.18s ease;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    font-family: -apple-system, 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(88, 166, 255, 0.14), transparent 32rem),
+      linear-gradient(135deg, var(--bg) 0%, var(--bg-soft) 100%);
     color: var(--text);
     min-height: 100vh;
     padding: 2rem 1rem;
   }
-  .container { max-width: 1100px; margin: 0 auto; }
+
+  a {
+    color: inherit;
+  }
+
+  .container {
+    width: min(1100px, 100%);
+    margin: 0 auto;
+  }
+
   header {
     text-align: center;
     margin-bottom: 3rem;
   }
+
   h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
     background: linear-gradient(90deg, #58a6ff, #bc8cff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.7rem;
   }
+
   .subtitle {
     color: var(--text-dim);
     font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    flex-wrap: wrap;
   }
-  .section { margin-bottom: 2.5rem; }
+
+  .social-link {
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .social-link:hover {
+    color: var(--text);
+    transform: translateY(-1px);
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
   .section-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
+
+  .section-count {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 0.85em;
+  }
+
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 1.25rem;
   }
+
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: all 0.2s ease;
+    border-radius: var(--radius);
+    padding: 1.35rem;
+    transition:
+      background var(--transition),
+      border-color var(--transition),
+      transform var(--transition),
+      box-shadow var(--transition);
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    min-height: 175px;
   }
+
   .card:hover {
     background: var(--card-hover);
     border-color: var(--accent);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(88, 166, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px var(--shadow-accent);
   }
+
   .card-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.75rem;
   }
-  .card-icon {
-    font-size: 2rem;
-    line-height: 1;
+
+  .card-title-wrap {
+    flex: 1;
+    min-width: 0;
   }
+
   .card-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    flex: 1;
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.25;
   }
-  .card-github {
-    color: var(--text-dim);
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-    transition: color 0.15s ease, transform 0.15s ease;
-  }
-  .card-github:hover { color: var(--text); transform: scale(1.1); }
-  .card-github svg { display: block; }
-  .card-mobile {
-    color: var(--text-dim);
-    display: inline-flex;
-    align-items: center;
-    margin-left: 0.5rem;
-    transition: color 0.15s ease, transform 0.15s ease;
-  }
-  .card-mobile:hover { color: var(--text); transform: scale(1.1); }
-  .card-mobile svg { display: block; }
-  .card-desc {
-    color: var(--text-dim);
-    font-size: 0.9rem;
-    flex: 1;
-  }
-  .btn {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 0.7rem 1rem;
-    font-size: 0.95rem;
-    font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.15s ease;
+
+  .card-actions {
     display: flex;
     align-items: center;
+    gap: 0.55rem;
+    flex-shrink: 0;
+  }
+
+  .icon-link,
+  .icon-badge {
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    gap: 0.5rem;
+    transition: color var(--transition), transform var(--transition);
+  }
+
+  .icon-link:hover {
+    color: var(--text);
+    transform: scale(1.08);
+  }
+
+  .icon-badge {
+    cursor: help;
+  }
+
+  .card-desc {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
   }
-  .btn:hover { background: var(--accent-hover); }
+
+  .btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn:focus-visible,
+  .icon-link:focus-visible,
+  .social-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
   .local-projects {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: var(--radius);
+    padding: 1.4rem;
   }
+
   .local-project-item {
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.25rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 1.15rem;
     border-bottom: 1px solid var(--border);
   }
+
   .local-project-item:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
   }
+
   .local-project-name {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text);
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
   }
+
   .local-project-desc {
     color: var(--text-dim);
     font-size: 0.9rem;
+    line-height: 1.45;
   }
+
   .legend {
     margin-top: 2.5rem;
     padding-bottom: 1.5rem;
   }
+
   .legend-title {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--text-dim);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
   }
+
   .legend-content {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem 2rem;
     align-items: center;
     flex-wrap: wrap;
   }
+
   .legend-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     color: var(--text-dim);
-    font-size: 0.85rem;
+    font-size: 0.88rem;
   }
+
   .legend-icon {
     width: 18px;
     height: 18px;
@@ -199,189 +293,335 @@
     color: var(--text-dim);
     flex-shrink: 0;
   }
-  .legend-icon svg {
+
+  .legend-icon svg,
+  .card-actions svg,
+  .social-link svg {
     display: block;
-    width: 100%;
-    height: 100%;
+  }
+
+  @media (max-width: 640px) {
+    body {
+      padding: 1.4rem 0.9rem;
+    }
+
+    header {
+      margin-bottom: 2.2rem;
+    }
+
+    .card {
+      padding: 1.15rem;
+      min-height: auto;
+    }
+
+    .legend-content {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+      scroll-behavior: auto !important;
+    }
   }
 </style>
 </head>
+
 <body>
 <div class="container">
   <header>
     <h1>Projectes de Vibecoding</h1>
+
     <div class="subtitle">
-      by Oriol Marimón-Clos
-      <a href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener" aria-label="LinkedIn de Oriol Marimón-Clos" style="color:inherit;text-decoration:none;margin-left:0.3rem;vertical-align:super;display:inline-block;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="12" height="12" fill="currentColor" style="display:block;">
+      <span>by Oriol Marimón-Clos</span>
+      <a
+        href="https://www.linkedin.com/in/omarimon-product-management-data/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn de Oriol Marimón-Clos"
+        class="social-link"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
           <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.22 8.67h4.56V24H.22V8.67zM8.9 8.67h4.38v2.08h.06c.61-1.16 2.1-2.39 4.32-2.39 4.62 0 5.48 3.03 5.48 6.98V24h-4.56v-7.74c0-1.85-.03-4.24-2.58-4.24-2.58 0-2.98 2.02-2.98 4.11V24H8.9V8.67z"/>
         </svg>
       </a>
     </div>
   </header>
 
-  <div id="sections"></div>
-  <div class="legend">
-    <div class="legend-title">Llegenda</div>
+  <main id="sections" aria-label="Llistat de projectes"></main>
+
+  <section class="legend" aria-label="Llegenda">
+    <h2 class="legend-title">Llegenda</h2>
+
     <div class="legend-content">
       <div class="legend-item">
-        <span class="legend-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-label="GitHub icon"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
-        </span>
+        <span class="legend-icon" aria-hidden="true" data-icon="github"></span>
         <span>Accés directe al repo</span>
       </div>
+
       <div class="legend-item">
-        <span class="legend-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-label="Mobile icon"><path d="M16 1H8C6.9 1 6 1.9 6 3V21C6 22.1 6.9 23 8 23H16C17.1 23 18 22.1 18 21V3C18 1.9 17.1 1 16 1ZM16 19H8V5H16V19ZM12 21.5C11.17 21.5 10.5 20.83 10.5 20C10.5 19.17 11.17 18.5 12 18.5C12.83 18.5 13.5 19.17 13.5 20C13.5 20.83 12.83 21.5 12 21.5Z"/></svg>
-        </span>
+        <span class="legend-icon" aria-hidden="true" data-icon="mobile"></span>
         <span>Optimitzat pel mòbil</span>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
 <script>
+const ICONS = {
+  github: `
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+      <path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/>
+    </svg>
+  `,
+  mobile: `
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+      <path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2ZM7 4h10v15H7V4Zm5 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1Z"/>
+    </svg>
+  `
+};
+
 const PROJECTS = [
   {
     id: "cooltra_calendar",
     name: "Cooltra Calendar",
-    icon: "📅",
     category: "cooltra",
-    description: "Calendari de festius 2026-2027",
+    description: "Calendari de festius 2026-2027.",
     url: "https://omarimonagentai.github.io/calendar_company/index.html",
-    github_repo: "https://github.com/omarimonagentai/calendar_company"
+    githubRepo: "https://github.com/omarimonagentai/calendar_company",
+    mobile: true
   },
   {
     id: "cooltra_meteo",
     name: "Cooltra Meteo",
-    icon: "🌦",
     category: "cooltra",
-    description: "Dashboard meteorologic",
+    description: "Dashboard meteorològic.",
     url: "https://omarimonagentai.github.io/meteo_company/meteo_dashboard.html",
-    github_repo: "https://github.com/omarimonagentai/meteo_company"
+    githubRepo: "https://github.com/omarimonagentai/meteo_company",
+    mobile: false
   },
   {
     id: "la_liga",
     name: "European Leagues",
-    icon: "⚽",
     category: "personal",
-    description: "Lligues europees 2025/26",
+    description: "Lligues europees 2025/26.",
     url: "https://omarimonagentai.github.io/european_leagues/lligues_europees.html",
-    github_repo: "https://github.com/omarimonagentai/european_leagues"
+    githubRepo: "https://github.com/omarimonagentai/european_leagues",
+    mobile: false
   },
   {
     id: "concerts",
     name: "Concerts Calendar",
-    icon: "🎵",
     category: "personal",
-    description: "Calendari de concerts",
+    description: "Calendari de concerts.",
     url: "https://omarimonagentai.github.io/concerts_calendar/calendar.html",
-    github_repo: "https://github.com/omarimonagentai/concerts_calendar"
+    githubRepo: "https://github.com/omarimonagentai/concerts_calendar",
+    mobile: true
   },
   {
     id: "ligabue",
     name: "My Setlists",
-    icon: "🎸",
     category: "personal",
-    description: "Reproductor de les playlists dels meus concerts",
+    description: "Reproductor de playlists dels meus concerts.",
     url: "https://omarimonagentai.github.io/musicplaylist/playlist_selector.html",
-    github_repo: "https://github.com/omarimonagentai/musicplaylist"
+    githubRepo: "https://github.com/omarimonagentai/musicplaylist",
+    mobile: true
   }
 ];
 
 const LOCAL_PROJECTS = [
   {
     name: "Desktop Karaoke",
-    icon: "🎧",
-    description: "Reproductor de playlists (requereix configuració local)"
+    description: "Reproductor de playlists. Requereix configuració local."
   },
   {
     name: "TMB",
-    icon: "🚌",
-    description: "Parades de bus TMB (requereix configuració local)"
+    description: "Parades de bus TMB. Requereix configuració local."
   }
 ];
 
-function makeCard(p) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  
-  const githubIcon = p.github_repo
-    ? `<a href="${p.github_repo}" target="_blank" rel="noopener" class="card-github" title="Veure repositori a GitHub"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="GitHub"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>`
-    : '';
-  
-  const mobileProjects = ["cooltra_calendar", "concerts", "ligabue"];
-  const mobileIcon = mobileProjects.includes(p.id) ? `<span class="card-mobile"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Mobile" title="Optimitzat per telèfons mòbils"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zM7 4h10v16H7V4zm4.5 14.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5-1.5.67-1.5 1.5.67 1.5 1.5 1.5zM9 11h6V6H9v5z"/></svg></span>` : '';
-  
-  card.innerHTML = `
-    <div class="card-header">
-      <span class="card-title">${p.name}</span>
-      ${mobileIcon}${githubIcon}
-    </div>
-    <div class="card-desc">${p.description}</div>
-    <a href="${p.url}" target="_blank" rel="noopener" class="btn">Obrir</a>
-  `;
-  
+const SECTIONS = [
+  {
+    title: "Cooltra",
+    category: "cooltra"
+  },
+  {
+    title: "Personals",
+    category: "personal"
+  }
+];
+
+function setLegendIcons() {
+  document.querySelectorAll("[data-icon]").forEach((el) => {
+    const iconName = el.dataset.icon;
+    el.innerHTML = ICONS[iconName] || "";
+  });
+}
+
+function createProjectCard(project) {
+  const card = document.createElement("article");
+  card.className = "card";
+
+  const header = document.createElement("div");
+  header.className = "card-header";
+
+  const titleWrap = document.createElement("div");
+  titleWrap.className = "card-title-wrap";
+
+  const title = document.createElement("h3");
+  title.className = "card-title";
+  title.textContent = project.name;
+
+  titleWrap.appendChild(title);
+
+  const actions = document.createElement("div");
+  actions.className = "card-actions";
+
+  if (project.mobile) {
+    const mobileBadge = document.createElement("span");
+    mobileBadge.className = "icon-badge";
+    mobileBadge.title = "Optimitzat per telèfons mòbils";
+    mobileBadge.setAttribute("aria-label", "Optimitzat per telèfons mòbils");
+    mobileBadge.innerHTML = ICONS.mobile;
+    actions.appendChild(mobileBadge);
+  }
+
+  if (project.githubRepo) {
+    const githubLink = document.createElement("a");
+    githubLink.href = project.githubRepo;
+    githubLink.target = "_blank";
+    githubLink.rel = "noopener noreferrer";
+    githubLink.className = "icon-link";
+    githubLink.title = "Veure repositori a GitHub";
+    githubLink.setAttribute("aria-label", `Veure repositori de ${project.name} a GitHub`);
+    githubLink.innerHTML = ICONS.github;
+    actions.appendChild(githubLink);
+  }
+
+  header.append(titleWrap, actions);
+
+  const description = document.createElement("p");
+  description.className = "card-desc";
+  description.textContent = project.description;
+
+  const button = document.createElement("a");
+  button.href = project.url;
+  button.target = "_blank";
+  button.rel = "noopener noreferrer";
+  button.className = "btn";
+  button.setAttribute("aria-label", `Obrir ${project.name}`);
+  button.textContent = "Obrir";
+
+  card.append(header, description, button);
+
   return card;
 }
 
-function makeSection(title, icon, projects) {
+function createSectionTitle(section, count) {
+  const h2 = document.createElement("h2");
+  h2.className = "section-title";
+
+  const title = document.createElement("span");
+  title.textContent = section.title;
+
+  const countEl = document.createElement("span");
+  countEl.className = "section-count";
+  countEl.textContent = `(${count})`;
+
+  h2.append(title, countEl);
+
+  return h2;
+}
+
+function createProjectSection(sectionConfig, projects) {
   if (!projects.length) return null;
-  const section = document.createElement('section');
-  section.className = 'section';
-  const h2 = document.createElement('h2');
-  h2.className = 'section-title';
-  h2.innerHTML = `<span>${title}</span><span style="color:var(--text-dim);font-weight:400;font-size:0.85em">(${projects.length})</span>`;
-  section.appendChild(h2);
-  const grid = document.createElement('div');
-  grid.className = 'grid';
-  projects.forEach(p => grid.appendChild(makeCard(p)));
-  section.appendChild(grid);
+
+  const section = document.createElement("section");
+  section.className = "section";
+  section.setAttribute("aria-labelledby", `${sectionConfig.category}-title`);
+
+  const title = createSectionTitle(sectionConfig, projects.length);
+  title.id = `${sectionConfig.category}-title`;
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  projects.forEach((project) => {
+    grid.appendChild(createProjectCard(project));
+  });
+
+  section.append(title, grid);
+
   return section;
 }
 
-function makeLocalProjectsSection() {
-  const section = document.createElement('section');
-  section.className = 'section';
-  const h2 = document.createElement('h2');
-  h2.className = 'section-title';
-  h2.innerHTML = `<span>Projectes locals (no disponibles en línia)</span>`;
-  section.appendChild(h2);
-  
-  const container = document.createElement('div');
-  container.className = 'local-projects';
-  
-  LOCAL_PROJECTS.forEach(p => {
-    const item = document.createElement('div');
-    item.className = 'local-project-item';
-    item.innerHTML = `
-      <div class="local-project-name">${p.name}</div>
-      <div class="local-project-desc">${p.description}</div>
-    `;
+function createLocalProjectsSection() {
+  const section = document.createElement("section");
+  section.className = "section";
+  section.setAttribute("aria-labelledby", "local-projects-title");
+
+  const title = document.createElement("h2");
+  title.id = "local-projects-title";
+  title.className = "section-title";
+
+  const titleText = document.createElement("span");
+  titleText.textContent = "Projectes locals";
+
+  const countEl = document.createElement("span");
+  countEl.className = "section-count";
+  countEl.textContent = `(${LOCAL_PROJECTS.length})`;
+
+  title.append(titleText, countEl);
+
+  const container = document.createElement("div");
+  container.className = "local-projects";
+
+  LOCAL_PROJECTS.forEach((project) => {
+    const item = document.createElement("article");
+    item.className = "local-project-item";
+
+    const name = document.createElement("h3");
+    name.className = "local-project-name";
+    name.textContent = project.name;
+
+    const description = document.createElement("p");
+    description.className = "local-project-desc";
+    description.textContent = project.description;
+
+    item.append(name, description);
     container.appendChild(item);
   });
-  
-  section.appendChild(container);
+
+  section.append(title, container);
+
   return section;
 }
 
 function render() {
-  const sectionsEl = document.getElementById('sections');
-  const cooltra = PROJECTS.filter(p => p.category === 'cooltra');
-  const personal = PROJECTS.filter(p => p.category !== 'cooltra');
-  const cooltraLogo = `<img src="https://estatics-nasia.dtibcn.cat/nasia-pro/media/cooltral.760x428.5caf8994.jpg" alt="Cooltra" style="height:1.6em;vertical-align:middle;border-radius:4px">`;
-  
-  const sections = [
-    makeSection('Cooltra', cooltraLogo, cooltra),
-    makeSection('Personals', '⭐', personal),
-    makeLocalProjectsSection(),
-  ].filter(Boolean);
-  
-  sections.forEach(s => sectionsEl.appendChild(s));
+  const sectionsEl = document.getElementById("sections");
+  const fragment = document.createDocumentFragment();
+
+  SECTIONS.forEach((sectionConfig) => {
+    const projects = PROJECTS.filter((project) => project.category === sectionConfig.category);
+    const section = createProjectSection(sectionConfig, projects);
+
+    if (section) {
+      fragment.appendChild(section);
+    }
+  });
+
+  fragment.appendChild(createLocalProjectsSection());
+
+  sectionsEl.replaceChildren(fragment);
+  setLegendIcons();
 }
 
-// Load on page load
-render();
+document.addEventListener("DOMContentLoaded", render);
 </script>
 </body>
 </html>
