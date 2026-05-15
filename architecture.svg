@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <radialGradient id="bgGlow" cx="0" cy="0" r="1">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#58a6ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#58a6ff"/>
+      <stop offset="100%" stop-color="#bc8cff"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#58a6ff"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#bc8cff"/>
+    </marker>
+    <style>
+      .lbl       { fill:#e6edf3; }
+      .lblDim    { fill:#8b949e; }
+      .mono      { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+      .h1        { font-size:24px; font-weight:800; }
+      .h2        { font-size:15px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+      .h3        { font-size:13px; font-weight:700; }
+      .small     { font-size:11px; }
+      .tiny      { font-size:10px; }
+      .body      { font-size:12px; }
+      .dashed    { stroke-dasharray: 4 4; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="860" fill="url(#bg)"/>
+  <circle cx="120" cy="80" r="480" fill="url(#bgGlow)"/>
+
+  <!-- Title -->
+  <text x="640" y="46" class="h1" text-anchor="middle" fill="url(#titleGrad)">Projects Dashboard — Arquitectura</text>
+  <text x="640" y="68" class="body lblDim" text-anchor="middle">Single-page estàtic (HTML + CSS + JS en un sol fitxer) servit per GitHub Pages</text>
+
+  <!-- ============== LEFT: Repository ============== -->
+  <g>
+    <rect x="40" y="100" width="280" height="200" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="180" y="125" class="h2 lblDim" text-anchor="middle">Repositori</text>
+    <line x1="60" y1="138" x2="300" y2="138" stroke="#30363d"/>
+
+    <!-- index.html -->
+    <rect x="60" y="152" width="240" height="40" rx="8" fill="#0d1117" stroke="#58a6ff"/>
+    <text x="180" y="170" class="h3 lbl mono" text-anchor="middle">index.html</text>
+    <text x="180" y="185" class="tiny lblDim" text-anchor="middle">entrypoint · HTML + &lt;style&gt; + &lt;script&gt;</text>
+
+    <!-- favicon -->
+    <rect x="60" y="204" width="240" height="34" rx="8" fill="#0d1117" stroke="#30363d"/>
+    <text x="180" y="225" class="body lbl mono" text-anchor="middle">favicon.svg</text>
+
+    <!-- README -->
+    <rect x="60" y="250" width="240" height="34" rx="8" fill="#0d1117" stroke="#30363d"/>
+    <text x="180" y="271" class="body lbl mono" text-anchor="middle">README.md</text>
+  </g>
+
+  <!-- ============== CENTER: index.html internals ============== -->
+  <g>
+    <rect x="360" y="100" width="560" height="640" rx="14" fill="#161b22" stroke="#58a6ff"/>
+    <text x="640" y="128" class="h2" text-anchor="middle" fill="#58a6ff">index.html</text>
+    <line x1="380" y1="140" x2="900" y2="140" stroke="#30363d"/>
+
+    <!-- &lt;style&gt; -->
+    <rect x="384" y="156" width="512" height="96" rx="10" fill="#0d1117" stroke="#30363d"/>
+    <text x="400" y="178" class="h3 lbl">&lt;style&gt;  CSS</text>
+    <text x="400" y="198" class="small lblDim">· Variables de tema (--bg, --card, --accent…)</text>
+    <text x="400" y="214" class="small lblDim">· Layout: .container, .section, .grid responsive</text>
+    <text x="400" y="230" class="small lblDim">· Components: .card, .btn, .btn-group, .legend</text>
+    <text x="400" y="246" class="small lblDim">· Media queries · prefers-reduced-motion</text>
+
+    <!-- &lt;body&gt; structure -->
+    <rect x="384" y="266" width="512" height="100" rx="10" fill="#0d1117" stroke="#30363d"/>
+    <text x="400" y="288" class="h3 lbl">&lt;body&gt;  Estructura</text>
+    <text x="400" y="308" class="small lblDim">· &lt;header&gt; títol + LinkedIn</text>
+    <text x="400" y="324" class="small lblDim">· &lt;main id="sections"&gt; (buit; omplert per JS)</text>
+    <text x="400" y="340" class="small lblDim">· &lt;section class="legend"&gt; llegenda d'icones</text>
+    <text x="400" y="358" class="small lblDim">· &lt;script&gt; al final del body</text>
+
+    <!-- &lt;script&gt; -->
+    <rect x="384" y="380" width="512" height="344" rx="10" fill="#0d1117" stroke="#bc8cff"/>
+    <text x="400" y="402" class="h3" fill="#bc8cff">&lt;script&gt;  Dades + Render</text>
+
+    <!-- Data block -->
+    <rect x="400" y="416" width="240" height="156" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="412" y="436" class="h3 lbl">Dades (const)</text>
+    <text x="412" y="456" class="small lblDim mono">ICONS { github, mobile }</text>
+    <text x="412" y="476" class="small lblDim mono">PROJECTS[]</text>
+    <text x="424" y="492" class="tiny lblDim">· cooltra_calendar</text>
+    <text x="424" y="506" class="tiny lblDim">· cooltra_meteo</text>
+    <text x="424" y="520" class="tiny" fill="#58a6ff">· cajut  (buttons[])</text>
+    <text x="424" y="534" class="tiny lblDim">· la_liga · concerts · ligabue</text>
+    <text x="412" y="552" class="small lblDim mono">LOCAL_PROJECTS[]</text>
+    <text x="412" y="566" class="small lblDim mono">SECTIONS[]</text>
+
+    <!-- Render block -->
+    <rect x="656" y="416" width="240" height="156" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="668" y="436" class="h3 lbl">Render</text>
+    <text x="668" y="456" class="small lblDim mono">render()</text>
+    <text x="680" y="472" class="tiny lblDim">↳ createProjectSection()</text>
+    <text x="692" y="486" class="tiny lblDim">↳ createSectionTitle()</text>
+    <text x="692" y="500" class="tiny lblDim">↳ createProjectCard()</text>
+    <text x="704" y="514" class="tiny" fill="#58a6ff">↳ createCardButton()  *new</text>
+    <text x="680" y="530" class="tiny lblDim">↳ createLocalProjectsSection()</text>
+    <text x="668" y="552" class="small lblDim mono">setLegendIcons()</text>
+
+    <!-- Data → Render arrow -->
+    <line x1="640" y1="494" x2="656" y2="494" stroke="#bc8cff" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+    <!-- Bootstrap line -->
+    <rect x="400" y="588" width="496" height="56" rx="8" fill="#161b22" stroke="#30363d"/>
+    <text x="412" y="608" class="h3 lbl">Bootstrap</text>
+    <text x="412" y="628" class="small lblDim mono">document.addEventListener("DOMContentLoaded", render)</text>
+
+    <!-- DOM out arrow -->
+    <rect x="400" y="658" width="496" height="52" rx="8" fill="#0d1117" stroke="#58a6ff" class="dashed"/>
+    <text x="648" y="678" class="h3" text-anchor="middle" fill="#58a6ff">DOM resultant</text>
+    <text x="648" y="696" class="small lblDim" text-anchor="middle">#sections ← seccions · grids · cards · botons</text>
+  </g>
+
+  <!-- Internal flow arrows inside index.html -->
+  <line x1="640" y1="252" x2="640" y2="262" stroke="#8b949e" marker-end="url(#arrow)"/>
+  <line x1="640" y1="366" x2="640" y2="376" stroke="#8b949e" marker-end="url(#arrow)"/>
+  <line x1="640" y1="644" x2="640" y2="654" stroke="#58a6ff" marker-end="url(#arrowAccent)"/>
+
+  <!-- ============== RIGHT: External targets ============== -->
+  <g>
+    <rect x="960" y="100" width="280" height="640" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="1100" y="125" class="h2 lblDim" text-anchor="middle">Destinacions externes</text>
+    <line x1="980" y1="138" x2="1220" y2="138" stroke="#30363d"/>
+
+    <!-- Cooltra group -->
+    <text x="980" y="160" class="h3" fill="#58a6ff">Cooltra</text>
+    <rect x="980" y="170" width="240" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="190" class="small lbl">Cooltra Calendar</text>
+    <text x="1210" y="190" class="tiny lblDim mono" text-anchor="end">github.io</text>
+
+    <rect x="980" y="208" width="240" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="228" class="small lbl">Cooltra Meteo</text>
+    <text x="1210" y="228" class="tiny lblDim mono" text-anchor="end">github.io</text>
+
+    <rect x="980" y="246" width="240" height="60" rx="6" fill="#0d1117" stroke="#58a6ff"/>
+    <text x="990" y="264" class="small lbl">Cajut</text>
+    <text x="990" y="280" class="tiny lblDim">↳ ?ctrl=pulse-presenter-7k2mq</text>
+    <text x="990" y="296" class="tiny lblDim">↳ ?game=team-pulse</text>
+
+    <!-- Personals group -->
+    <text x="980" y="332" class="h3" fill="#bc8cff">Personals</text>
+    <rect x="980" y="342" width="240" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="362" class="small lbl">European Leagues</text>
+
+    <rect x="980" y="380" width="240" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="400" class="small lbl">Concerts Calendar</text>
+
+    <rect x="980" y="418" width="240" height="32" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="438" class="small lbl">My Setlists</text>
+
+    <!-- GitHub repos -->
+    <text x="980" y="476" class="h3 lblDim">Repositoris (icona ↗)</text>
+    <rect x="980" y="486" width="240" height="60" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <text x="990" y="506" class="small lbl">github.com/omarimonagentai/*</text>
+    <text x="990" y="522" class="tiny lblDim">calendar_company · meteo_company</text>
+    <text x="990" y="538" class="tiny lblDim">cajut · european_leagues · …</text>
+
+    <!-- Local (sense URL) -->
+    <text x="980" y="572" class="h3 lblDim">Projectes locals</text>
+    <rect x="980" y="582" width="240" height="50" rx="6" fill="#0d1117" stroke="#30363d" class="dashed"/>
+    <text x="990" y="602" class="small lbl">Desktop Karaoke · TMB</text>
+    <text x="990" y="620" class="tiny lblDim">Només llistat (no enllaçat)</text>
+  </g>
+
+  <!-- ============== Hosting / user flow (bottom) ============== -->
+  <g>
+    <rect x="40" y="600" width="280" height="140" rx="12" fill="#161b22" stroke="#30363d"/>
+    <text x="180" y="624" class="h2 lblDim" text-anchor="middle">Hosting &amp; usuari</text>
+    <line x1="60" y1="636" x2="300" y2="636" stroke="#30363d"/>
+
+    <rect x="60" y="650" width="240" height="36" rx="8" fill="#0d1117" stroke="#30363d"/>
+    <text x="180" y="673" class="body lbl mono" text-anchor="middle">GitHub Pages</text>
+
+    <rect x="60" y="694" width="240" height="36" rx="8" fill="#0d1117" stroke="#30363d"/>
+    <text x="180" y="717" class="body lbl" text-anchor="middle">Navegador de l'usuari</text>
+  </g>
+
+  <!-- ============== Cross arrows ============== -->
+  <!-- Repo file → index.html box -->
+  <path d="M300,172 C330,172 340,180 360,200" fill="none" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrowAccent)"/>
+
+  <!-- index.html script → external destinations (card buttons) -->
+  <path d="M896,440 C930,440 940,260 960,255" fill="none" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#arrowAccent)"/>
+  <path d="M896,490 C930,490 940,395 960,395" fill="none" stroke="#bc8cff" stroke-width="1.5" marker-end="url(#arrowPurple)"/>
+  <path d="M896,540 C930,540 940,515 960,515" fill="none" stroke="#8b949e" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+  <!-- GitHub Pages serves index.html -->
+  <path d="M180,650 C180,500 320,420 380,420" fill="none" stroke="#8b949e" stroke-width="1.5" class="dashed" marker-end="url(#arrow)"/>
+  <text x="200" y="540" class="tiny lblDim" transform="rotate(-70 200 540)">serveix</text>
+
+  <!-- Navegador → GitHub Pages -->
+  <path d="M180,694 L180,686" fill="none" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============== Legend ============== -->
+  <g transform="translate(40,770)">
+    <rect x="0" y="0" width="1200" height="70" rx="10" fill="#161b22" stroke="#30363d"/>
+    <text x="16" y="22" class="h3 lblDim">Llegenda</text>
+
+    <line x1="100" y1="34" x2="140" y2="34" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowAccent)"/>
+    <text x="150" y="38" class="small lbl">Flux principal (dades → render → DOM → enllaços Cooltra)</text>
+
+    <line x1="500" y1="34" x2="540" y2="34" stroke="#bc8cff" stroke-width="2" marker-end="url(#arrowPurple)"/>
+    <text x="550" y="38" class="small lbl">Enllaços a projectes personals</text>
+
+    <line x1="800" y1="34" x2="840" y2="34" stroke="#8b949e" stroke-width="2" class="dashed" marker-end="url(#arrow)"/>
+    <text x="850" y="38" class="small lbl">Servei / referència secundària</text>
+
+    <text x="16" y="58" class="tiny lblDim">Tot el codi viu en un únic index.html. No hi ha build, no hi ha dependències, no hi ha back-end: pur estàtic.</text>
+  </g>
+</svg>
