@@ -236,6 +236,17 @@
     transform: translateY(-1px);
   }
 
+  .btn-group {
+    display: flex;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-group .btn {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
   .btn:focus-visible,
   .icon-link:focus-visible,
   .social-link:focus-visible {
@@ -431,6 +442,24 @@ const PROJECTS = [
     mobile: false
   },
   {
+    id: "cajut",
+    name: "Cajut",
+    category: "cooltra",
+    description: "Pulse de team meeting interactiu.",
+    githubRepo: "https://github.com/omarimonagentai/cajut",
+    mobile: true,
+    buttons: [
+      {
+        label: "Presenter",
+        url: "https://omarimonagentai.github.io/cajut/?ctrl=pulse-presenter-7k2mq"
+      },
+      {
+        label: "Participant",
+        url: "https://omarimonagentai.github.io/cajut/?game=team-pulse"
+      }
+    ]
+  },
+  {
     id: "la_liga",
     name: "European Leagues",
     category: "personal",
@@ -534,17 +563,34 @@ function createProjectCard(project) {
   description.className = "card-desc";
   description.textContent = project.description;
 
+  const buttons = project.buttons ?? [{ label: "Obrir", url: project.url }];
+
+  card.append(header, description);
+
+  if (buttons.length > 1) {
+    const group = document.createElement("div");
+    group.className = "btn-group";
+    buttons.forEach(({ label, url }) => {
+      group.appendChild(createCardButton(project.name, label, url));
+    });
+    card.appendChild(group);
+  } else {
+    const { label, url } = buttons[0];
+    card.appendChild(createCardButton(project.name, label, url));
+  }
+
+  return card;
+}
+
+function createCardButton(projectName, label, url) {
   const button = document.createElement("a");
-  button.href = project.url;
+  button.href = url;
   button.target = "_blank";
   button.rel = "noopener noreferrer";
   button.className = "btn";
-  button.setAttribute("aria-label", `Obrir ${project.name}`);
-  button.textContent = "Obrir";
-
-  card.append(header, description, button);
-
-  return card;
+  button.setAttribute("aria-label", `Obrir ${projectName} – ${label}`);
+  button.textContent = label;
+  return button;
 }
 
 function createSectionTitle(section, count) {
