@@ -167,7 +167,7 @@
     <!-- GitHub repos -->
     <text x="980" y="476" class="h3 lblDim">Repositoris (icona ↗)</text>
     <rect x="980" y="486" width="240" height="60" rx="6" fill="#0d1117" stroke="#30363d"/>
-    <text x="990" y="506" class="small lbl">github.com/omarimonagentai/*</text>
+    <text x="990" y="506" class="small lbl">github.com/omarimonproductai/*</text>
     <text x="990" y="522" class="tiny lblDim">calendar_company · meteo_company</text>
     <text x="990" y="538" class="tiny lblDim">cajut · european_leagues · …</text>
 
