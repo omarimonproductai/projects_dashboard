@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 6 · Neopop</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Inter",-apple-system,system-ui,sans-serif;
+    background:#fff4e0;color:#1a1a1a;min-height:100vh;
+    padding:2.5rem 1.25rem 5rem;
+    background-image:
+      radial-gradient(circle at 12% 18%,#ffd6e8 0%,transparent 22%),
+      radial-gradient(circle at 88% 78%,#c4ecff 0%,transparent 22%),
+      radial-gradient(circle at 60% 12%,#d6f5c1 0%,transparent 18%);
+    background-attachment:fixed;
+  }
+  .container{width:min(1180px,100%);margin:0 auto;position:relative}
+
+  .sticker{
+    position:absolute;font-weight:900;font-size:.85rem;letter-spacing:.04em;
+    text-transform:uppercase;padding:.45rem 1rem;border:3px solid #1a1a1a;
+    background:#fff;box-shadow:4px 4px 0 #1a1a1a;border-radius:999px;
+    transform:rotate(-6deg);user-select:none;
+  }
+  .sticker.s1{top:-.6rem;right:2rem;background:#ffe44d;transform:rotate(8deg)}
+  .sticker.s2{top:5rem;left:-1rem;background:#ff85a2;color:#fff;transform:rotate(-12deg)}
+
+  header{
+    background:#1a1a1a;color:#fff4e0;border:3px solid #1a1a1a;
+    border-radius:28px;padding:2.6rem 2.2rem;margin-bottom:2.4rem;
+    box-shadow:8px 8px 0 #ff85a2;position:relative;overflow:hidden;
+  }
+  header::before{
+    content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+    background:#ffe44d;top:-80px;right:-60px;opacity:.9;border:3px solid #fff4e0;
+  }
+  header::after{
+    content:"";position:absolute;width:90px;height:90px;border-radius:50%;
+    background:#c4ecff;bottom:-30px;left:30%;opacity:.85;border:3px solid #fff4e0;
+  }
+  .eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:900;letter-spacing:.18em;
+    text-transform:uppercase;padding:.3rem .8rem;background:#ffe44d;color:#1a1a1a;
+    border-radius:999px;margin-bottom:1.2rem;position:relative;z-index:1;
+  }
+  h1{
+    font-size:clamp(2.4rem,7vw,4.6rem);font-weight:900;letter-spacing:-.04em;
+    line-height:.98;margin-bottom:1rem;text-wrap:balance;position:relative;z-index:1;
+  }
+  h1 .squiggle{
+    background:#ff85a2;color:#1a1a1a;padding:0 .25em;border-radius:14px;
+    display:inline-block;transform:rotate(-2deg);
+  }
+  .lead{
+    font-size:1.1rem;line-height:1.5;color:#fff4e0;opacity:.9;max-width:34rem;
+    position:relative;z-index:1;
+  }
+  .byline{
+    display:inline-flex;gap:.6rem;align-items:center;margin-top:1.3rem;
+    padding:.5rem 1rem;background:rgba(255,244,224,.12);border-radius:999px;
+    font-size:.88rem;position:relative;z-index:1;
+  }
+  .byline a{color:#ffe44d;font-weight:700;text-decoration:none}
+  .byline a:hover{text-decoration:underline}
+
+  .section{margin-bottom:2.6rem}
+  .section-title{
+    display:inline-block;font-size:1.6rem;font-weight:900;letter-spacing:-.02em;
+    padding:.4rem 1.1rem;background:#1a1a1a;color:#fff4e0;border:3px solid #1a1a1a;
+    border-radius:14px;box-shadow:4px 4px 0 #fff;transform:rotate(-1deg);
+    margin-bottom:1.4rem;
+  }
+  .section-title .pill{
+    display:inline-block;font-size:.85rem;padding:.1rem .55rem;background:#ffe44d;
+    color:#1a1a1a;border-radius:999px;margin-left:.5rem;
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:1.4rem}
+
+  .card{
+    border:3px solid #1a1a1a;border-radius:24px;padding:1.5rem 1.5rem 1.3rem;
+    background:#fff;box-shadow:6px 6px 0 #1a1a1a;
+    display:flex;flex-direction:column;gap:.9rem;position:relative;
+    transition:transform .15s,box-shadow .15s;
+  }
+  .card:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #1a1a1a}
+  .card[data-bg="1"]{background:#ffd6e8}
+  .card[data-bg="2"]{background:#c4ecff}
+  .card[data-bg="3"]{background:#d6f5c1}
+  .card[data-bg="4"]{background:#ffe44d}
+  .card[data-bg="5"]{background:#ffd1a3}
+  .card[data-bg="6"]{background:#e0d4ff}
+  .card[data-bg="0"]{background:#fff}
+
+  .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+  .card-emoji{
+    width:54px;height:54px;border-radius:16px;background:#1a1a1a;color:#fff4e0;
+    display:inline-flex;align-items:center;justify-content:center;font-size:1.7rem;
+    flex-shrink:0;border:3px solid #1a1a1a;
+  }
+  .card-title{font-size:1.3rem;font-weight:900;letter-spacing:-.02em;line-height:1.15;margin-top:.4rem}
+  .card-desc{font-size:.95rem;line-height:1.45;color:#1a1a1a;font-weight:500;flex:1}
+  .card-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+  .badge{
+    font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+    padding:.2rem .55rem;border:2px solid #1a1a1a;border-radius:999px;background:#fff;
+  }
+  .badge.mob{background:#1a1a1a;color:#fff4e0}
+
+  .card-actions{display:flex;gap:.5rem;flex-wrap:wrap}
+  .btn{
+    flex:1;min-width:0;display:inline-flex;align-items:center;justify-content:center;
+    gap:.4rem;padding:.7rem 1rem;border:3px solid #1a1a1a;background:#1a1a1a;
+    color:#fff4e0;font-weight:900;font-size:.92rem;letter-spacing:.02em;
+    border-radius:14px;text-decoration:none;cursor:pointer;
+    transition:transform .12s,box-shadow .12s;box-shadow:3px 3px 0 #1a1a1a;
+  }
+  .btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 #1a1a1a}
+  .btn.alt{background:#fff;color:#1a1a1a}
+  .repo-btn{
+    width:42px;height:42px;flex:0 0 auto;padding:0;background:#fff;color:#1a1a1a;
+  }
+  .repo-btn svg{width:18px;height:18px}
+
+  .local-stack{
+    background:#fff;border:3px dashed #1a1a1a;border-radius:24px;padding:1.5rem 1.7rem;
+    box-shadow:6px 6px 0 #1a1a1a;
+  }
+  .local-stack h3{font-size:1.1rem;font-weight:900;margin-bottom:.7rem;display:flex;align-items:center;gap:.5rem}
+  .local-stack h3::before{content:"💾"}
+  .local-item{padding:.6rem 0;border-bottom:2px dotted #1a1a1a;display:flex;gap:.6rem;align-items:baseline}
+  .local-item:last-child{border-bottom:none}
+  .local-item b{font-weight:900;font-size:1rem}
+  .local-item span{font-size:.92rem;color:#444;font-weight:500}
+
+  .footer{
+    margin-top:3rem;display:flex;gap:1rem;justify-content:center;align-items:center;
+    flex-wrap:wrap;font-size:.85rem;font-weight:700;color:#444;
+  }
+  .footer .star{color:#ff85a2;font-size:1.2rem;animation:spin 6s linear infinite;display:inline-block}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media (max-width:640px){
+    header{padding:2rem 1.4rem}
+    .sticker.s2{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <span class="eyebrow">★ Vibecoding ★</span>
+    <h1>Projectes fets<br>amb <span class="squiggle">moltes ganes</span>.</h1>
+    <p class="lead">Mini-apps, dashboards i experiments. Tot pur producte de la curiositat.</p>
+    <div class="byline">
+      ✦ per Oriol Marimón-Clos
+      <a href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener">@LinkedIn ↗</a>
+    </div>
+  </header>
+
+  <main id="sections"></main>
+
+  <div class="footer">
+    <span class="star">✦</span>
+    <span>Made with curiosity, coffee & Claude</span>
+    <span class="star">✦</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const ICONS={
+  github:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>`
+};
+const EMOJIS={
+  cooltra_calendar:"📅",cooltra_meteo:"⛅",cajut:"🎯",
+  la_liga:"⚽",concerts:"🎫",ligabue:"🎶",tmbnew:"🚌"
+};
+const main=document.getElementById("sections");
+let idx=0;
+SECTIONS.forEach(sec=>{
+  const items=PROJECTS.filter(p=>p.category===sec.category);
+  const cards=items.map(p=>{
+    idx++;
+    const buttons=p.buttons||[{label:"Obrir →",url:p.url}];
+    const btns=buttons.map((b,i)=>`<a class="btn ${i>0?'alt':''}" href="${b.url}" target="_blank" rel="noopener">${b.label}</a>`).join("");
+    const tags=[`<span class="badge">${sec.title}</span>`];
+    if(p.mobile) tags.push(`<span class="badge mob">📱 Mobile</span>`);
+    return `<article class="card" data-bg="${idx}">
+      <div class="card-head">
+        <div>
+          <div class="card-emoji">${EMOJIS[p.id]||"✨"}</div>
+          <div class="card-title">${p.name}</div>
+        </div>
+      </div>
+      <div class="card-tags">${tags.join("")}</div>
+      <p class="card-desc">${p.description}</p>
+      <div class="card-actions">
+        ${btns}
+        ${p.githubRepo?`<a class="btn repo-btn" href="${p.githubRepo}" target="_blank" rel="noopener" title="Repo">${ICONS.github}</a>`:""}
+      </div>
+    </article>`;
+  }).join("");
+  main.insertAdjacentHTML("beforeend",`
+    <section class="section">
+      <h2 class="section-title">${sec.title}<span class="pill">${items.length}</span></h2>
+      <div class="grid">${cards}</div>
+    </section>`);
+});
+if(LOCAL_PROJECTS.length){
+  const locals=LOCAL_PROJECTS.map(l=>`<div class="local-item"><b>${l.name}</b><span>— ${l.description}</span></div>`).join("");
+  main.insertAdjacentHTML("beforeend",`
+    <section class="section">
+      <h2 class="section-title">Locals<span class="pill">${LOCAL_PROJECTS.length}</span></h2>
+      <div class="local-stack">
+        <h3>Només funcionen al meu portàtil</h3>
+        ${locals}
+      </div>
+    </section>`);
+}
+</script>
+</body>
+</html>

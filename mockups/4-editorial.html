@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 4 · Editorial</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:Georgia,"Times New Roman",serif;
+    background:#fbf8f3;color:#1a1612;min-height:100vh;
+    padding:2rem 1.5rem 5rem;line-height:1.55;
+  }
+  .container{width:min(1100px,100%);margin:0 auto}
+
+  .masthead{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:.6rem 0;border-top:1px solid #1a1612;border-bottom:1px solid #1a1612;
+    font-family:Georgia,serif;font-size:.78rem;letter-spacing:.16em;
+    text-transform:uppercase;color:#6b6359;
+  }
+  .masthead .ctr{text-align:center;font-weight:700;color:#1a1612;font-style:italic;font-size:.95rem;letter-spacing:.04em}
+  .masthead .rt{text-align:right}
+  .masthead a{color:inherit;text-decoration:none;border-bottom:1px solid currentColor}
+  .masthead a:hover{color:#8b1e1e}
+
+  .hero{
+    text-align:center;padding:3.5rem 1rem 3rem;border-bottom:1px solid #1a1612;
+  }
+  .hero-kicker{
+    font-family:"SF Mono",monospace;font-size:.78rem;letter-spacing:.32em;
+    text-transform:uppercase;color:#8b1e1e;margin-bottom:1.2rem;
+  }
+  h1{
+    font-size:clamp(2.6rem,7vw,5.2rem);font-weight:400;line-height:1.02;
+    letter-spacing:-.025em;font-style:italic;margin-bottom:1.2rem;
+    text-wrap:balance;
+  }
+  h1 b{font-style:normal;font-weight:900}
+  .hero-deck{
+    font-size:1.15rem;max-width:38rem;margin:0 auto;color:#3d362d;
+    line-height:1.5;font-family:Georgia,serif;
+  }
+  .hero-rule{
+    width:60px;height:2px;background:#1a1612;margin:1.6rem auto 0;
+  }
+
+  .section{padding:3rem 0 1rem;border-bottom:1px solid #d6cfc2}
+  .section-head{
+    display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:baseline;
+    margin-bottom:2rem;
+  }
+  .section-title{
+    font-size:2.2rem;font-weight:900;letter-spacing:-.02em;font-style:italic;
+  }
+  .section-title::before{
+    content:"";display:inline-block;width:24px;height:2px;background:#8b1e1e;
+    vertical-align:middle;margin-right:.7rem;
+  }
+  .section-meta{
+    font-family:"SF Mono",monospace;font-size:.75rem;letter-spacing:.18em;
+    text-transform:uppercase;color:#6b6359;
+  }
+
+  .articles{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem 3rem}
+  .article{
+    display:grid;grid-template-columns:auto 1fr;gap:1.2rem;
+    padding-bottom:1.6rem;border-bottom:1px solid #d6cfc2;
+  }
+  .article:nth-last-child(-n+2){border-bottom:none;padding-bottom:0}
+  .art-num{
+    font-family:Georgia,serif;font-size:3rem;font-weight:900;line-height:.9;
+    color:#8b1e1e;letter-spacing:-.04em;
+  }
+  .art-body{min-width:0}
+  .art-kicker{
+    font-family:"SF Mono",monospace;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:#6b6359;margin-bottom:.4rem;
+  }
+  .art-title{
+    font-size:1.45rem;font-weight:900;letter-spacing:-.015em;line-height:1.15;
+    margin-bottom:.55rem;
+  }
+  .art-title a{color:inherit;text-decoration:none;background-image:linear-gradient(#1a1612,#1a1612);background-position:0 95%;background-repeat:no-repeat;background-size:0% 1px;transition:background-size .3s}
+  .art-title a:hover{background-size:100% 1px}
+  .art-desc{font-size:.98rem;line-height:1.55;color:#3d362d;margin-bottom:.8rem}
+  .art-foot{
+    display:flex;align-items:center;gap:1rem;font-family:"SF Mono",monospace;
+    font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:#6b6359;
+    flex-wrap:wrap;
+  }
+  .art-foot a{color:#8b1e1e;text-decoration:none;border-bottom:1px solid currentColor}
+  .art-foot a:hover{color:#1a1612}
+  .art-foot .dot{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.5}
+  .art-cta{
+    display:inline-block;padding:.5rem .9rem;background:#1a1612;color:#fbf8f3;
+    border:none;font-family:Georgia,serif;font-size:.88rem;font-style:italic;
+    text-decoration:none;letter-spacing:.02em;cursor:pointer;
+    transition:background .2s;margin-right:.3rem;
+  }
+  .art-cta:hover{background:#8b1e1e}
+
+  .colophon{
+    margin-top:3.5rem;padding:1.5rem;background:#1a1612;color:#fbf8f3;
+    display:grid;grid-template-columns:auto 1fr;gap:1.4rem;align-items:center;
+  }
+  .colophon-tag{
+    font-family:"SF Mono",monospace;font-size:.72rem;letter-spacing:.22em;
+    text-transform:uppercase;color:#d6cfc2;
+  }
+  .colophon p{font-style:italic;font-size:1.05rem;line-height:1.5}
+  .colophon strong{font-style:normal;font-weight:900}
+
+  .footer{
+    margin-top:2rem;display:flex;justify-content:space-between;
+    font-family:"SF Mono",monospace;font-size:.72rem;letter-spacing:.18em;
+    text-transform:uppercase;color:#6b6359;flex-wrap:wrap;gap:.6rem;
+  }
+
+  @media (max-width:720px){
+    .articles{grid-template-columns:1fr;gap:1.6rem}
+    .article{border-bottom:1px solid #d6cfc2!important;padding-bottom:1.4rem!important}
+    .article:last-child{border-bottom:none!important}
+    .masthead{grid-template-columns:1fr;text-align:center;gap:.3rem}
+    .masthead .rt{text-align:center}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="masthead">
+    <div>Est. MMXXIV</div>
+    <div class="ctr">The Vibecoding Quarterly</div>
+    <div class="rt"><a href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener">@omarimon</a></div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-kicker">Volum I · Edició 2026 · Maig</div>
+    <h1>Projectes de <b>Vibecoding</b>,<br><i>fets a estones lliures.</i></h1>
+    <p class="hero-deck">
+      Una selecció d'experiments digitals d'Oriol Marimón-Clos. Mini-apps,
+      dashboards i eines del dia a dia — perquè la millor manera d'aprendre
+      és construint coses petites.
+    </p>
+    <div class="hero-rule"></div>
+  </section>
+
+  <main id="sections"></main>
+
+  <div class="footer">
+    <span>© MMXXVI — Tots els drets reservats</span>
+    <span>Composat en Georgia & SF Mono</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+const KICKERS={
+  cooltra_calendar:"Calendari",cooltra_meteo:"Meteorologia",cajut:"Team Meetings",
+  la_liga:"Futbol",concerts:"Música en viu",ligabue:"Playlist",tmbnew:"Mobilitat"
+};
+const main=document.getElementById("sections");
+let n=0;
+SECTIONS.forEach((sec,si)=>{
+  const items=PROJECTS.filter(p=>p.category===sec.category);
+  const articles=items.map(p=>{
+    n++;
+    const buttons=p.buttons||[{label:"Llegir-ne més",url:p.url}];
+    const btns=buttons.map(b=>`<a class="art-cta" href="${b.url}" target="_blank" rel="noopener">${b.label} →</a>`).join("");
+    const foot=[];
+    if(p.mobile) foot.push("Mobile-ready");
+    if(p.githubRepo) foot.push(`<a href="${p.githubRepo}" target="_blank" rel="noopener">Source</a>`);
+    return `<article class="article">
+      <div class="art-num">${String(n).padStart(2,"0")}</div>
+      <div class="art-body">
+        <div class="art-kicker">${KICKERS[p.id]||sec.title}</div>
+        <h3 class="art-title"><a href="${(p.url||(p.buttons&&p.buttons[0].url))||'#'}" target="_blank" rel="noopener">${p.name}</a></h3>
+        <p class="art-desc">${p.description}</p>
+        <div style="margin-bottom:.6rem">${btns}</div>
+        <div class="art-foot">${foot.join('<span class="dot"></span>')}</div>
+      </div>
+    </article>`;
+  }).join("");
+  main.insertAdjacentHTML("beforeend",`
+    <section class="section">
+      <div class="section-head">
+        <h2 class="section-title">${sec.title}</h2>
+        <div class="section-meta">Cap. ${String(si+1).padStart(2,"0")} — ${items.length} articles</div>
+      </div>
+      <div class="articles">${articles}</div>
+    </section>`);
+});
+if(LOCAL_PROJECTS.length){
+  const txt=LOCAL_PROJECTS.map(l=>`<strong>${l.name}</strong> — ${l.description}`).join(" · ");
+  main.insertAdjacentHTML("beforeend",`
+    <div class="colophon">
+      <div class="colophon-tag">Apèndix<br>Local</div>
+      <p>${txt}</p>
+    </div>`);
+}
+</script>
+</body>
+</html>
