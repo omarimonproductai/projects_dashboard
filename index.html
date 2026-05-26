@@ -95,6 +95,13 @@
     gap:1.1rem;
   }
 
+  .section--personal .grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  @media (max-width:720px){
+    .section--personal .grid{grid-template-columns:1fr}
+  }
+
   .card{
     position:relative;border-radius:22px;padding:1.6rem 1.5rem 1.4rem;
     background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.55));
@@ -303,6 +310,15 @@ const PROJECTS = [
     ]
   },
   {
+    id: "tmbnew",
+    name: "TMB New",
+    category: "personal",
+    description: "Mou-te amb TMB (mobile first)",
+    url: "https://tmbnew.pages.dev/",
+    githubRepo: "https://github.com/omarimonproductai/tmbnew",
+    mobile: true
+  },
+  {
     id: "la_liga",
     name: "European Leagues",
     category: "personal",
@@ -327,15 +343,6 @@ const PROJECTS = [
     description: "Reproductor de playlists dels meus concerts.",
     url: "https://omarimonproductai.github.io/musicplaylist/playlist_selector.html",
     githubRepo: "https://github.com/omarimonproductai/musicplaylist",
-    mobile: true
-  },
-  {
-    id: "tmbnew",
-    name: "TMB New",
-    category: "personal",
-    description: "Mou-te amb TMB (mobile first)",
-    url: "https://tmbnew.pages.dev/",
-    githubRepo: "https://github.com/omarimonproductai/tmbnew",
     mobile: true
   }
 ];
@@ -455,7 +462,7 @@ function createProjectSection(sectionConfig, projects) {
   if (!projects.length) return null;
 
   const section = document.createElement("section");
-  section.className = "section";
+  section.className = `section section--${sectionConfig.category}`;
   section.setAttribute("aria-labelledby", `${sectionConfig.category}-title`);
 
   const head = createSectionTitle(sectionConfig, projects.length);
