@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 2 · Bento OS</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"SF Pro Display",-apple-system,system-ui,"Inter",sans-serif;
+    background:#0a0a0c;color:#f5f5f7;min-height:100vh;
+    padding:2.5rem 1.25rem 4rem;
+    background-image:
+      radial-gradient(ellipse at top,#1a1a22 0%,#0a0a0c 60%),
+      radial-gradient(circle at 15% 90%,rgba(99,102,241,.18),transparent 30%),
+      radial-gradient(circle at 85% 10%,rgba(244,114,182,.14),transparent 30%);
+    background-attachment:fixed;
+  }
+  .container{width:min(1240px,100%);margin:0 auto}
+  header{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:3rem;padding:0 .25rem;
+  }
+  .brand{display:flex;align-items:center;gap:.7rem}
+  .brand-dot{
+    width:36px;height:36px;border-radius:11px;
+    background:conic-gradient(from 220deg,#f472b6,#a78bfa,#22d3ee,#34d399,#f472b6);
+    box-shadow:0 6px 16px rgba(167,139,250,.35);
+  }
+  .brand-name{font-weight:700;letter-spacing:-.01em;font-size:1rem}
+  .brand-sub{font-size:.78rem;color:#a1a1aa}
+  .header-actions{display:flex;gap:.5rem;align-items:center}
+  .header-btn{
+    width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);color:#d4d4d8;display:inline-flex;
+    align-items:center;justify-content:center;text-decoration:none;
+    transition:background .2s,color .2s;
+  }
+  .header-btn:hover{background:rgba(255,255,255,.12);color:#fff}
+  .header-btn svg{width:16px;height:16px}
+
+  .hero{
+    border-radius:28px;padding:3rem 2.5rem;margin-bottom:1.25rem;
+    background:
+      radial-gradient(circle at 80% 50%,rgba(244,114,182,.45),transparent 55%),
+      radial-gradient(circle at 20% 80%,rgba(99,102,241,.45),transparent 55%),
+      linear-gradient(135deg,#1e1b4b,#312e81);
+    position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.08);
+  }
+  .hero h1{
+    font-size:clamp(2rem,5.5vw,3.5rem);font-weight:800;letter-spacing:-.035em;
+    line-height:1.02;margin-bottom:.75rem;text-wrap:balance;max-width:24ch;
+  }
+  .hero p{color:#d4d4d8;max-width:36rem;font-size:1.02rem;line-height:1.5}
+  .hero-tags{display:flex;gap:.4rem;margin-top:1.4rem;flex-wrap:wrap}
+  .tag{
+    padding:.35rem .8rem;border-radius:999px;font-size:.78rem;font-weight:600;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(8px);
+  }
+
+  .section-label{
+    font-size:.78rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:#a1a1aa;margin:2.2rem .5rem 1rem;display:flex;align-items:center;gap:.6rem;
+  }
+  .section-label::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.06)}
+
+  .bento{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:1.1rem;
+  }
+  .tile{
+    grid-column:span 2;border-radius:24px;padding:1.5rem;
+    background:#16161b;border:1px solid rgba(255,255,255,.06);
+    display:flex;flex-direction:column;gap:.9rem;min-height:230px;
+    position:relative;overflow:hidden;
+    transition:transform .25s ease,border-color .25s ease;
+  }
+  .tile:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.18)}
+  .tile.lg{grid-column:span 3}
+  .tile.xl{grid-column:span 4}
+  .tile-glow{
+    position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background:radial-gradient(circle at top right,var(--glow,#a78bfa) 0%,transparent 50%);
+  }
+  .tile-icon{
+    width:48px;height:48px;border-radius:14px;display:inline-flex;
+    align-items:center;justify-content:center;font-size:1.45rem;
+    background:var(--icon-bg,linear-gradient(135deg,#a78bfa,#f472b6));
+    box-shadow:0 8px 22px var(--icon-shadow,rgba(167,139,250,.35));
+    position:relative;z-index:1;
+  }
+  .tile-title{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;position:relative;z-index:1}
+  .tile-desc{color:#a1a1aa;font-size:.92rem;line-height:1.5;flex:1;position:relative;z-index:1}
+  .tile-foot{display:flex;justify-content:space-between;align-items:center;gap:.6rem;position:relative;z-index:1}
+  .tile-open{
+    display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .95rem;
+    background:#fff;color:#0a0a0c;font-weight:700;font-size:.85rem;
+    border-radius:999px;text-decoration:none;transition:transform .2s,background .2s;
+  }
+  .tile-open:hover{transform:translateX(2px);background:#f5f5f7}
+  .tile-open svg{width:13px;height:13px}
+  .tile-meta{display:flex;gap:.4rem}
+  .meta-chip{
+    width:28px;height:28px;border-radius:9px;display:inline-flex;
+    align-items:center;justify-content:center;color:#a1a1aa;
+    background:rgba(255,255,255,.06);text-decoration:none;
+    transition:color .2s,background .2s;
+  }
+  .meta-chip:hover{color:#fff;background:rgba(255,255,255,.14)}
+  .meta-chip svg{width:13px;height:13px}
+  .multi-btns{display:flex;gap:.45rem;flex-wrap:wrap}
+  .multi-btns .tile-open{flex:1;justify-content:center}
+
+  .local-tile{
+    grid-column:span 6;border-radius:24px;padding:1.6rem 1.8rem;
+    background:linear-gradient(135deg,#1f1f24,#16161b);
+    border:1px dashed rgba(255,255,255,.14);
+  }
+  .local-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:.9rem}
+  .local-item{padding:.85rem 1.05rem;background:rgba(255,255,255,.04);border-radius:14px}
+  .local-item-name{font-weight:700;font-size:.95rem;margin-bottom:.2rem}
+  .local-item-desc{font-size:.85rem;color:#a1a1aa}
+
+  @media (max-width:900px){
+    .bento{grid-template-columns:repeat(2,1fr)}
+    .tile,.tile.lg,.tile.xl,.local-tile{grid-column:span 2}
+  }
+  @media (max-width:560px){
+    .bento{grid-template-columns:1fr}
+    .tile,.tile.lg,.tile.xl,.local-tile{grid-column:span 1}
+    .hero{padding:2rem 1.5rem}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-name">Vibecoding</div>
+        <div class="brand-sub">by Oriol Marimón-Clos</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a class="header-btn" href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4"/><circle cx="8" cy="8" r="1.25" fill="#0a0a0c"/><rect x="6.8" y="10.2" width="2.4" height="7" fill="#0a0a0c"/><path d="M11.4 10.2h2.3v1c.5-.8 1.4-1.3 2.6-1.3 2.2 0 3.5 1.4 3.5 4v3.3h-2.4v-3c0-1.3-.5-2-1.6-2-1.2 0-1.9.8-1.9 2.2v2.8h-2.4v-7z" fill="#0a0a0c"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>Projectes que neixen de la curiositat.</h1>
+    <p>Una col·lecció de mini-apps i experiments. Eines del dia a dia, calendaris, dashboards i una mica de música.</p>
+    <div class="hero-tags">
+      <span class="tag">7 projectes</span>
+      <span class="tag">Vibecoding</span>
+      <span class="tag">2025</span>
+    </div>
+  </section>
+
+  <main id="bento"></main>
+</div>
+
+<script src="data.js"></script>
+<script>
+const ICONS={
+  github:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>`,
+  mobile:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2ZM7 4h10v15H7V4Zm5 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1Z"/></svg>`,
+  arrow:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`
+};
+const FLAIR={
+  cooltra_calendar:{emoji:"📅",glow:"#22d3ee",iconBg:"linear-gradient(135deg,#22d3ee,#0ea5e9)",shadow:"rgba(34,211,238,.35)",size:"lg"},
+  cooltra_meteo:{emoji:"⛅",glow:"#fbbf24",iconBg:"linear-gradient(135deg,#fbbf24,#f97316)",shadow:"rgba(251,191,36,.35)"},
+  cajut:{emoji:"🎯",glow:"#a78bfa",iconBg:"linear-gradient(135deg,#a78bfa,#7c3aed)",shadow:"rgba(167,139,250,.35)"},
+  la_liga:{emoji:"⚽",glow:"#34d399",iconBg:"linear-gradient(135deg,#34d399,#059669)",shadow:"rgba(52,211,153,.35)"},
+  concerts:{emoji:"🎫",glow:"#f472b6",iconBg:"linear-gradient(135deg,#f472b6,#db2777)",shadow:"rgba(244,114,182,.35)",size:"lg"},
+  ligabue:{emoji:"🎶",glow:"#fb923c",iconBg:"linear-gradient(135deg,#fb923c,#ea580c)",shadow:"rgba(251,146,60,.35)"},
+  tmbnew:{emoji:"🚌",glow:"#60a5fa",iconBg:"linear-gradient(135deg,#60a5fa,#2563eb)",shadow:"rgba(96,165,250,.35)"}
+};
+
+const bento=document.getElementById("bento");
+SECTIONS.forEach(sec=>{
+  const items=PROJECTS.filter(p=>p.category===sec.category);
+  const html=items.map(p=>{
+    const f=FLAIR[p.id]||{emoji:"✨",glow:"#a78bfa",iconBg:"linear-gradient(135deg,#a78bfa,#f472b6)",shadow:"rgba(167,139,250,.35)"};
+    const buttons=p.buttons||[{label:"Obrir",url:p.url}];
+    const btns=buttons.map(b=>`<a class="tile-open" href="${b.url}" target="_blank" rel="noopener">${b.label} ${ICONS.arrow}</a>`).join("");
+    const mobileChip=p.mobile?`<span class="meta-chip" title="Mòbil">${ICONS.mobile}</span>`:"";
+    const repoChip=p.githubRepo?`<a class="meta-chip" href="${p.githubRepo}" target="_blank" rel="noopener" title="Repo">${ICONS.github}</a>`:"";
+    return `<article class="tile ${f.size==='lg'?'lg':''}" style="--glow:${f.glow}">
+      <div class="tile-glow"></div>
+      <div class="tile-icon" style="--icon-bg:${f.iconBg};--icon-shadow:${f.shadow}">${f.emoji}</div>
+      <div>
+        <div class="tile-title">${p.name}</div>
+      </div>
+      <p class="tile-desc">${p.description}</p>
+      <div class="tile-foot">
+        <div class="multi-btns">${btns}</div>
+        <div class="tile-meta">${mobileChip}${repoChip}</div>
+      </div>
+    </article>`;
+  }).join("");
+  bento.insertAdjacentHTML("beforeend",`
+    <div class="section-label">${sec.title} · ${items.length}</div>
+    <div class="bento">${html}</div>`);
+});
+if(LOCAL_PROJECTS.length){
+  const locals=LOCAL_PROJECTS.map(l=>`
+    <div class="local-item">
+      <div class="local-item-name">${l.name}</div>
+      <div class="local-item-desc">${l.description}</div>
+    </div>`).join("");
+  bento.insertAdjacentHTML("beforeend",`
+    <div class="section-label">Locals</div>
+    <div class="bento">
+      <div class="local-tile">
+        <div style="font-weight:700;font-size:1rem">Requereixen configuració local</div>
+        <div class="local-grid">${locals}</div>
+      </div>
+    </div>`);
+}
+</script>
+</body>
+</html>

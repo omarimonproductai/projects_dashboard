@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup 1 · Aurora Glass</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --ink:#f6f7fb;
+    --ink-dim:rgba(246,247,251,.62);
+    --ink-faint:rgba(246,247,251,.42);
+    --glass:rgba(255,255,255,.06);
+    --glass-strong:rgba(255,255,255,.10);
+    --line:rgba(255,255,255,.12);
+    --line-strong:rgba(255,255,255,.22);
+    --grad:linear-gradient(135deg,#a78bfa 0%,#f472b6 50%,#fb923c 100%);
+  }
+  html,body{height:100%}
+  body{
+    font-family:"Inter",-apple-system,system-ui,sans-serif;
+    color:var(--ink);
+    background:#05060c;
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:3rem 1.25rem 5rem;
+    position:relative;
+  }
+  body::before,body::after,.blob{
+    content:"";position:fixed;border-radius:50%;filter:blur(80px);
+    opacity:.55;z-index:0;pointer-events:none;
+    animation:float 18s ease-in-out infinite alternate;
+  }
+  body::before{width:42rem;height:42rem;background:#7c3aed;top:-12rem;left:-10rem}
+  body::after{width:36rem;height:36rem;background:#f472b6;bottom:-10rem;right:-8rem;animation-duration:22s;animation-delay:-6s}
+  .blob{width:30rem;height:30rem;background:#22d3ee;top:30%;right:20%;opacity:.35;animation-duration:26s;animation-delay:-12s}
+  @keyframes float{
+    0%{transform:translate(0,0) scale(1)}
+    100%{transform:translate(40px,-30px) scale(1.15)}
+  }
+  .container{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}
+  header{text-align:center;margin-bottom:4rem;padding-top:1.5rem}
+  .eyebrow{
+    display:inline-block;padding:.4rem .9rem;border:1px solid var(--line-strong);
+    border-radius:999px;background:var(--glass);backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);font-size:.78rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-dim);margin-bottom:1.6rem;
+  }
+  h1{
+    font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.04em;
+    line-height:1;background:var(--grad);-webkit-background-clip:text;
+    background-clip:text;color:transparent;margin-bottom:1rem;text-wrap:balance;
+  }
+  .lead{color:var(--ink-dim);font-size:1.05rem;max-width:32rem;margin:0 auto .8rem}
+  .byline{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink-faint);font-size:.9rem}
+  .byline a{color:#a5b4fc;text-decoration:none}
+  .byline a:hover{color:#fff}
+
+  .section{margin-bottom:3.5rem}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.4rem}
+  .section-title{
+    font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:600;
+  }
+  .section-count{
+    color:var(--ink-faint);font-size:.8rem;font-variant-numeric:tabular-nums;
+    padding:.25rem .65rem;border:1px solid var(--line);border-radius:999px;
+    background:var(--glass);backdrop-filter:blur(12px);
+  }
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:1.1rem}
+
+  .card{
+    position:relative;border-radius:22px;padding:1.6rem 1.5rem 1.4rem;
+    background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+    border:1px solid var(--line);backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    display:flex;flex-direction:column;gap:1rem;min-height:200px;
+    transition:transform .25s ease,border-color .25s ease,background .25s ease;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
+    background:linear-gradient(135deg,rgba(255,255,255,.4),rgba(255,255,255,0) 40%);
+    -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+    -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
+  }
+  .card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem}
+  .card-title{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;line-height:1.25}
+  .card-meta{display:flex;gap:.4rem;flex-shrink:0}
+  .chip{
+    width:30px;height:30px;border-radius:50%;display:inline-flex;
+    align-items:center;justify-content:center;color:var(--ink-dim);
+    background:rgba(255,255,255,.06);border:1px solid var(--line);
+    transition:color .2s,background .2s,transform .2s;text-decoration:none;
+  }
+  .chip:hover{color:#fff;background:rgba(255,255,255,.14);transform:scale(1.08)}
+  .chip svg{width:14px;height:14px}
+  .card-desc{color:var(--ink-dim);font-size:.95rem;line-height:1.5;flex:1}
+  .card-cta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem}
+  .btn{
+    flex:1;min-width:0;padding:.7rem .9rem;border-radius:12px;font-weight:600;
+    font-size:.92rem;text-decoration:none;text-align:center;
+    background:var(--grad);color:#0b0c14;transition:transform .2s,filter .2s;
+    border:none;cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+  .btn-ghost{
+    background:rgba(255,255,255,.08);color:var(--ink);border:1px solid var(--line-strong);
+    backdrop-filter:blur(8px);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.14)}
+
+  .local-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:1rem}
+  .local-card{
+    background:rgba(255,255,255,.04);border:1px dashed var(--line-strong);
+    border-radius:18px;padding:1.3rem 1.4rem;
+  }
+  .local-name{font-weight:700;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
+  .local-name::before{content:"";width:8px;height:8px;border-radius:50%;background:#fbbf24;box-shadow:0 0 14px #fbbf24}
+  .local-desc{color:var(--ink-dim);font-size:.92rem;line-height:1.5}
+
+  .legend{
+    display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;
+    margin-top:3rem;padding-top:2rem;border-top:1px solid var(--line);
+    color:var(--ink-faint);font-size:.85rem;
+  }
+  .legend-item{display:inline-flex;align-items:center;gap:.5rem}
+  .legend-icon{display:inline-flex;color:var(--ink-dim)}
+  .legend-icon svg{width:16px;height:16px}
+
+  @media (max-width:640px){
+    body{padding:2rem 1rem 4rem}
+    header{margin-bottom:2.5rem}
+    .card{padding:1.3rem 1.2rem;min-height:auto}
+  }
+</style>
+</head>
+<body>
+<div class="blob"></div>
+<div class="container">
+  <header>
+    <span class="eyebrow">Aurora · v1</span>
+    <h1>Projectes de Vibecoding</h1>
+    <p class="lead">Una col·lecció d'experiments creats des de la curiositat.</p>
+    <div class="byline">
+      <span>per Oriol Marimón-Clos</span>
+      <span>·</span>
+      <a href="https://www.linkedin.com/in/omarimon-product-management-data/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+  <main id="sections"></main>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-icon" data-icon="github"></span>Accés al repo</div>
+    <div class="legend-item"><span class="legend-icon" data-icon="mobile"></span>Optimitzat pel mòbil</div>
+  </div>
+</div>
+<script src="data.js"></script>
+<script>
+const ICONS={
+  github:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>`,
+  mobile:`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 1H7C5.9 1 5 1.9 5 3v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2ZM7 4h10v15H7V4Zm5 18c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1Z"/></svg>`
+};
+document.querySelectorAll("[data-icon]").forEach(el=>el.innerHTML=ICONS[el.dataset.icon]||"");
+const main=document.getElementById("sections");
+SECTIONS.forEach(sec=>{
+  const items=PROJECTS.filter(p=>p.category===sec.category);
+  const cards=items.map(p=>{
+    const buttons=p.buttons||[{label:"Obrir",url:p.url}];
+    const btns=buttons.map((b,i)=>`<a class="btn ${i>0?'btn-ghost':''}" href="${b.url}" target="_blank" rel="noopener">${b.label}</a>`).join("");
+    const mobileChip=p.mobile?`<span class="chip" title="Mòbil">${ICONS.mobile}</span>`:"";
+    const repoChip=p.githubRepo?`<a class="chip" href="${p.githubRepo}" target="_blank" rel="noopener" title="Repo">${ICONS.github}</a>`:"";
+    return `<article class="card">
+      <div class="card-top">
+        <div class="card-title">${p.name}</div>
+        <div class="card-meta">${mobileChip}${repoChip}</div>
+      </div>
+      <p class="card-desc">${p.description}</p>
+      <div class="card-cta">${btns}</div>
+    </article>`;
+  }).join("");
+  main.insertAdjacentHTML("beforeend",`
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">${sec.title}</div>
+        <div class="section-count">${items.length} projecte${items.length===1?"":"s"}</div>
+      </div>
+      <div class="grid">${cards}</div>
+    </section>`);
+});
+if(LOCAL_PROJECTS.length){
+  const locals=LOCAL_PROJECTS.map(l=>`
+    <div class="local-card">
+      <div class="local-name">${l.name}</div>
+      <div class="local-desc">${l.description}</div>
+    </div>`).join("");
+  main.insertAdjacentHTML("beforeend",`
+    <section class="section">
+      <div class="section-head">
+        <div class="section-title">Locals</div>
+        <div class="section-count">${LOCAL_PROJECTS.length}</div>
+      </div>
+      <div class="local-grid">${locals}</div>
+    </section>`);
+}
+</script>
+</body>
+</html>
